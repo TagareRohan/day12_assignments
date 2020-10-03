@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+<button id="submit" name="submit" value="submit">Submit</button>
+<span id="temp"></span>
+
+<script type="text/javascript">
+
+var xhr=new XMLHttpRequest();
+document.getElementById("submit").addEventListener('click',function(){
+	
+	
+	var url="http://jsonplaceholder.typicode.com/users";
+	
+	xhr.open("GET",url);
+	xhr.send(null);
+	
+	xhr.onreadystatechange=processRequest;
+	
+	console.log(xhr);
+	
+	
+	
+});
+
+function processRequest()
+{
+	var msg=document.getElementById("temp");
+	
+	msg.innerHTML=xhr.responseText;
+		
+	
+}
+
+</script>
+
+</body>
+</html>

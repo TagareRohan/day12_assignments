@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert Student</title>
+</head>
+<body>
+
+
+<label>StudentId</label>
+<input type="text" name="studentId" id="studentId">
+<label>StudentName</label>
+<input type="text" name="studentName" id="studentName">
+<span id="temp"></span>
+
+<input type="button" value="submit" id="submit">
+
+<script type="text/javascript">
+
+var studentId=document.getElementById("studentId");
+var xhr=new XMLHttpRequest();
+//var studentName=document.getElementById("studentName");
+studentId.addEventListener('blur',function(){
+	
+	
+	var url="StudentServlet?studentId="+studentId.value;
+	
+	xhr.open("GET",url);
+	xhr.send(null);
+	xhr.onreadystatechange=processRequest;	
+	console.log(xhr);
+	console.log(studentIdField.value);
+
+	
+	
+});
+
+var btn=document.getElementById("submit");
+
+btn.addEventListener("click",function(){
+	var xml=new XMLHttpRequest();
+	var name = document.getElementById("studentName").value;
+	//alert(name);
+	xml.open("POST","StudentServlet",true);
+	xml.onreadystatechange = handlePost;
+	xml.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+	xml.send("name="+name); 
+	
+});
+
+
+
+function handlePost()
+{
+		
+}
+
+function processRequest()
+{
+	var resp=xhr.responseText.trim();
+	document.getElementById("studentName").value=resp;
+	//studentName.innerHTML=xhr.responseText;
+	//console.log(responseText);
+	//console.log("hi");
+	
+	
+}
+
+
+
+</script>
+
+</body>
+</html>
